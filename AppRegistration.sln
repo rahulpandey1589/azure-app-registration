@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRegistration", "AppRegistration\AppRegistration.csproj", "{7A2BF659-37F3-4C3F-8ED7-C98B2C054F26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRegistration.UI", "AppRegistration.UI\AppRegistration.UI.csproj", "{7A2D7D40-5C92-40E2-9C8E-EAFC8D33726F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A2BF659-37F3-4C3F-8ED7-C98B2C054F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A2BF659-37F3-4C3F-8ED7-C98B2C054F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A2BF659-37F3-4C3F-8ED7-C98B2C054F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A2BF659-37F3-4C3F-8ED7-C98B2C054F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A2D7D40-5C92-40E2-9C8E-EAFC8D33726F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A2D7D40-5C92-40E2-9C8E-EAFC8D33726F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A2D7D40-5C92-40E2-9C8E-EAFC8D33726F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A2D7D40-5C92-40E2-9C8E-EAFC8D33726F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
