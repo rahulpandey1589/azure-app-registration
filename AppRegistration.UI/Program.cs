@@ -11,16 +11,11 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         {
             builder.Configuration.Bind("AzureAd", options);
             options.SaveTokens = true;  // Ensure tokens are saved
-        });
+        }).EnableTokenAcquisitionToCallDownstreamApi([builder.Configuration.GetValue<string>("ApiSettings:Scope")!])
+    .AddInMemoryTokenCaches();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews(options =>
-{
-    var policy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build();
-    options.Filters.Add(new AuthorizeFilter(policy));
-});
+builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddHttpClient();

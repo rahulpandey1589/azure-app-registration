@@ -1,5 +1,8 @@
 using System.Diagnostics;
+using Microsoft.Identity.Web;
 using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using AppRegistration.UI.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -15,7 +18,8 @@ public class HomeController : Controller
     private readonly IConfiguration _configuration;
 
     public HomeController(
-        IHttpClientFactory httpClientFactory, IConfiguration configuration,
+        IHttpClientFactory httpClientFactory, 
+        IConfiguration configuration,
         ILogger<HomeController> logger)
     {
         _httpClientFactory = httpClientFactory;
@@ -23,15 +27,14 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    [Authorize]
     public async Task<IActionResult> Index()
     {
-        int[] array1 = [1, 2, 3];
-        int[] array2 = [4, 5, 6];
-        int[] array3 = [..array1, ..array2];
-        
         if (User.Identity.IsAuthenticated)
         {
-            var accessToken = await HttpContext.GetTokenAsync("access_token").ConfigureAwait(false);
+            string[] scopes = new string[] { _configuration.GetValue<string>("ApiSettings:Scope") };
+            
+           var accessToken = await HttpContext.GetTokenAsync("access_token").ConfigureAwait(false);
             if (string.IsNullOrEmpty(accessToken))
             {
                 return Unauthorized();
@@ -41,7 +44,11 @@ public class HomeController : Controller
             using var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             var response = await client.GetStringAsync($"{apiBaseUrl}/weatherforecast");
-            Console.WriteLine($"Access Token: {accessToken}");
+
+            var weatherModel = JsonSerializer.Deserialize<List<WeatherResponseModel>>(response);
+            
+            return View(weatherModel);
+
         }
         else
         {

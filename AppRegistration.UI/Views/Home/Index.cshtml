@@ -1,8 +1,42 @@
-﻿@{
+﻿@model List<WeatherResponseModel>
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <table class="table">
+        <thead>
+        <tr>
+        <th scope="col">
+            Date
+        </th>
+        <th scope="col">
+            Summary
+        </th>
+        <th scope="col">
+            Temprature in Celsius
+        </th>
+        <th scope="col">
+            Temprature in Fahrenheit
+        </th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.date</td>
+                <td>@item.summary</td>
+                <td>@item.temperatureC</td>
+                <td>@item.temperatureF</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
